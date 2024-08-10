@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    margin: 0;
+  
+    background-color: hsl(234, 29%, 20%);
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+  
+    display: flex; /* Flexbox */
+    justify-content: center; /* centar horizontalmente*/
+    align-items: center; /* centar verticalmente*/
+  
+    height: 100vh;
+  }
+
+main {
+    width: 600px;
+    height: 450px;
+    background-color: hsl(0, 0%, 100%);
+    display: flex;
+    padding: 14px;
+    border-radius: 10px;
+}
+
+.imagen {
+    
+    background-image: url(./assets/images/illustration-sign-up-desktop.svg);
+    width: 286px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+
+}
+
+.content {
+    width: 286px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
