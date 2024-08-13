@@ -4,40 +4,89 @@ body {
     margin: 0;
   
     background-color: hsl(234, 29%, 20%);
-    font-size: 14px;
+    font-size: 28px;
+    color: hsl(234, 29%, 20%);
     font-family: "Roboto", sans-serif;
   
     display: flex; /* Flexbox */
     justify-content: center; /* centar horizontalmente*/
     align-items: center; /* centar verticalmente*/
   
-    height: 100vh;
-  }
+    height: 100vh; /* viewport height - esta tomando el 100% del */
+                /* del dispositivo lo cual permite que align */
+                /* puede centrar verticalmente */
+    }
 
 main {
-    width: 600px;
-    height: 450px;
+    width: 1440px;
+    height: 1000px;
     background-color: hsl(0, 0%, 100%);
     display: flex;
-    padding: 14px;
-    border-radius: 10px;
+    padding: 42px;
+    padding-left: 60px;
+    border-radius: 32px;
 }
 
 .imagen {
     
     background-image: url(./assets/images/illustration-sign-up-desktop.svg);
-    width: 286px;
+    width: 678px;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 10px;
+    border-radius: 32px;
 
 }
 
 .content {
-    width: 286px;
+    width: 700px;
+    justify-content: center;
+    align-items: center;
+    padding-right: 70px;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 112px;
     font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.vinetas {
+    height: 33px;
+    padding-right: 14px;
+}
+
+div {
+    padding-top: 14px;
+    padding-bottom: 32px;
+}
+
+form {
+    width: 100%;
+}
+
+label {
+    font-weight: 700;
+}
+
+input {
+    width: 667px;
+    height: 84px;
+    padding: 0;
+}
+
+[placeholder] {
+    font-size: 28px;
+    padding-left: 28px;
+    border-radius: 14px;
+    border-color: hsl(231, 7%, 60%);
+}
+
+button {
+    width: 100%;
+    height: 84px;
+    padding: 0;
+    font-size: 28px;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(235, 18%, 26%);
+    border-radius: 14px;
 }
