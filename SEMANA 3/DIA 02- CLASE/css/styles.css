@@ -1,0 +1,152 @@
+/* CUSTOM PROPERTIES <> variables */
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+:root {
+  /* FONTS */
+  --font-primary: "Kumbh Sans", sans-serif;
+  --font-size: 16px;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* COLORS */
+  --primary-orange: hsl(26, 100%, 55%);
+  --primary-pale-orange: hsl(25, 100%, 94%);
+
+  --neutral-very-dark-blue: hsl(220, 13%, 13%);
+  --neutral-dark-grayish-blue: hsl(219, 9%, 45%);
+  --neutral-grayish-blue: hsl(220, 14%, 75%);
+  --neutral-light-grayish-blue: hsl(223, 64%, 98%);
+
+  --neutral-white: hsl(0, 0%, 100%);
+  --neutral-black: hsl(0, 0%, 0%);
+
+  /* --mi-color: orange; */
+}
+
+/* GENERAL */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  /* border: 1px solid red; */
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+body {
+  font-family: var(--font-primary);
+  /* color: var(--mi-color); */
+}
+
+img {
+  /* RWD para imágenes*/
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* UTILS */
+
+.wrapper {
+  width: min(100% - 3rem, 1200px);
+
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+/* HEADER */
+
+.header {
+  border: 1px solid red;
+
+  height: 4.5rem; /* 72 / 16px */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.5rem;
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header__links {
+  display: flex;
+  font-size: .8rem;
+  gap: 1rem;
+  color: var(--neutral-dark-grayish-blue);
+}
+
+/* GALLERY */
+
+.gallery {
+    width: 100%;
+    justify-content: center;
+}
+
+.gallery img{
+    width: 80%;
+}
+
+/* PRODUCT */
+
+.product {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.product__subtitle {
+    font-size: 1rem;
+}
+
+.product__title {
+    font-size: 3rem;
+}
+
+.product__description {
+    font-size: 1rem;
+}
+
+.product__price {
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.product__wrapper{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.product__amount {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+}
+
+.product__discount{
+    border: 1px solid red;
+    background-color: black;
+    color: var(--neutral-white);
+    padding: 0 0.5rem;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.product__price-with-discount {
+    
+}
