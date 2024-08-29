@@ -1,0 +1,18 @@
+/* CUSTOM PROPERTIES <> variables */
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+/*
+576px  -> pantallas pequeñas (celulares)
+768px  -> pantallas pequeñas (tablets y celulares)
+992px  -> pantallas medianas (Desktop)
+1200px -> pantallas grandes (Desktops, TVs)
+*/
+
+@import './MODULES/variables.css';
+@import './MODULES/utils.css';
+@import './MODULES/general.css';
+@import './MODULES/header.css';
+@import './MODULES/product.css';
+@import './MODULES/product-detail.css';
+@import './MODULES/gallery.css';
+
