@@ -9,9 +9,17 @@ const word = ANSWER.toUpperCase()
 const ALPHABET = Array.from({ length: 26 }, (_, index) => String.fromCharCode(65 + index))
 
 let correctGuesses = ''
+let tries = 0
 
 const selectLetter = (letter) => {
-  console.log('seleccionando letra', letter)
+  tries++
+  console.log(tries)
+  // console.log('seleccionando letra', letter)
+  if (word.includes(letter)) {
+    correctGuesses = correctGuesses + letter
+    
+    renderMaskedWord()
+  }
 }
 
 const renderMaskedWord = () => {
@@ -22,7 +30,19 @@ const renderMaskedWord = () => {
     )
     .join('')
 
-  // SI GANA EL JUEGO HAY QUE AGREGAR MÁS LOGICA
+  // TODO: Si gana el juego hay que agregar la lógica respectiva
+
+  // 'JAVA_CRIPT'.split('').some(letter => letter === '_')
+
+  if (!elMaskedWord.textContent.includes('_')) {
+    console.log('YOU WON!')
+    elResult.classList.toggle('hidden')
+    elResult.textContent = 'YOU WON!'
+  } else if (tries > 10) {
+    console.log('YOU LOST!')
+    elResult.classList.toggle('hidden')
+    elResult.textContent = 'YOU LOST!'
+  }
 }
 
 const renderAlphabet = () => {

@@ -4,8 +4,6 @@
   }
   
   .container {
-    border: 1px solid red;
-  
     width: min(100% - 3rem, 400px);
     margin: 0 auto;
   }
@@ -22,6 +20,7 @@
   .hangman__maskedword {
     text-align: center;
     font-size: 3rem;
+    margin-top: 1rem;
   }
   
   .hangman__buttons {
