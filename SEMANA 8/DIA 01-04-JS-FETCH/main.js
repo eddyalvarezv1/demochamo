@@ -1,6 +1,6 @@
 // console.log('holajs')
 
-// OBJETIVO: Traer información en formato JSON de una URL
+// OBJETIVO: Traer información en formato JSON desde una URL
 
 const url = 'https://jsonplaceholder.typicode.com/posts'
 
