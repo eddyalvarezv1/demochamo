@@ -43,3 +43,13 @@ body {
   padding: .5rem;
   cursor: pointer;
 }
+
+.pokemon-item__buttons {
+  display: flex;
+  gap: .2rem;
+}
+
+.is-favorite {
+  color: #dec62a;
+  fill: #dec62a;
+}
