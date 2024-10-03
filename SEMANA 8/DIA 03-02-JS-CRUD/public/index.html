@@ -52,7 +52,23 @@
         </table>
       </div>
       <div>
-        FORM
+        <form>
+          <h2>Nueva película</h2>
+
+          <input type="text" name="nombre" placeholder="Mi pelicula" required />
+          <input type="text" name="image" placeholder="https://..." required />
+          <input type="date" name="estreno" placeholder="estreno" required />
+          <select name="genero" required>
+            <option value="">Selecciona un genero...</option>
+            <option value="1">Comedia</option>
+            <option value="2">Acción</option>
+            <option value="3">Animación</option>
+            <option value="4">Aventura</option>
+          </select>
+          <textarea name="resumen" placeholder="Resumen de mi película"></textarea>
+
+          <input type="submit" value="Guardar" />
+        </form>
       </div>
     </div>
   </section>
