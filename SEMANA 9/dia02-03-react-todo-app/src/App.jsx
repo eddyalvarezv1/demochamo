@@ -1,5 +1,10 @@
 import { useState } from "react"
 
+import TodoHeader from "./components/TodoHeader"
+import TodoForm from "./components/TodoForm"
+import TodoStats from "./components/TodoStats"
+import TodoList from "./components/TodoList"
+
 const App = () => {
   const DEFAULT_TODOS = [
     {
@@ -20,27 +25,9 @@ const App = () => {
   ]
 
   const [todos, setTodos] = useState(DEFAULT_TODOS)
-  const [input, setInput] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
-    console.log('Añadiendo una nueva tarea...')
-
-    const newTodo = {
-      id: crypto.randomUUID(),
-      title: input,
-      completed: false
-    }
-
+  const handleSubmit = (newTodo) => {
     setTodos([...todos, newTodo])
-
-    setInput('')
-  }
-
-  const handleChange = (event) => {
-    // Vamos a capturar lo que escribimos en la caja de texto
-    setInput(event.target.value)
   }
 
   const handleRemoveTodo = (event) => {
@@ -71,72 +58,50 @@ const App = () => {
     setTodos(updatedTodos)
   }
 
-  const completedTodos = todos.filter(todo => todo.completed).length
+  // TODO: RETO2 - Completar la funcionalidad del botón Limpiar completadas
+  const handleClearTodos = (event) => {
+    const imcompletedTodos = todos.filter(todo => !todo.completed)
+    
+    setTodos(imcompletedTodos)
+  }
 
   return (
     <main
       className="bg-yellow-100 w-full max-w-sm mx-auto mt-10 border border-yellow-400 rounded-lg shadow-lg p-4"
     >
-      <h1 className="text-2xl font-bold text-center">TODO APP</h1>
+      <TodoHeader title="TODO APP + React" />
 
-      <form onSubmit={handleSubmit}>
-        <input
-          className="w-full border my-3 p-2 rounded-lg"
-          type="text"
-          placeholder="¿Qué deseas hacer hoy?"
-          required
-          onChange={handleChange}
-          value={input}
-        />
-      </form>
+      <TodoForm onSubmit={handleSubmit} />
 
       {/* {input} */}
 
       {/* DONE: RETO1 - Añadir una estadística de cuantas tareas estan completadas y el total de tareas */}
-      {/* TODO: RETO2 - Completar la funcionalidad del botón Limpiar completadas */}
 
-      <section className="flex justify-between items-center">
-        <span className="font-bold">
-          {completedTodos} de {todos.length}
-        </span>
-        <button
-          className="bg-blue-500 text-white rounded-lg px-2 py-1 hover:bg-blue-700 duration-300"
-        >
-          Limpiar completadas
-        </button>
-      </section>
+      {/* Renderizado condicional */}
+
+      {
+        todos.length > 0
+        ? (
+          <TodoStats
+            todos={todos}
+            onClearTodos={handleClearTodos}
+          />
+        )
+        : (
+          <div className="text-center font-medium text-gray-500">
+            Agrega más tareas en la parte superior.
+          </div>
+        )
+
+      }
+      
 
       <section className="mt-4">
-        <ul className="flex flex-col gap-2">
-          {todos.map(todo => {
-            return (
-              <li className="flex" key={todo.id}>
-                <input
-                  className="mr-2"
-                  type="checkbox"
-                  data-id={todo.id}
-                  onChange={handleCompleted}
-                  checked={todo.completed}
-                />
-                <div className="w-full flex justify-between items-center">
-                  <span
-                    className={`font-medium ${todo.completed ? 'line-through' : '' }`}
-                  >
-                    {todo.title}
-                  </span>
-                  <button
-                    className="bg-red-300 rounded-lg px-1 py-1"
-                    data-id={todo.id}
-                    onClick={handleRemoveTodo}
-                  >
-                    ❌
-                  </button>
-                </div>
-              </li>
-            )
-          })}
-
-        </ul>
+        <TodoList
+          todos={todos}
+          onCompleted={handleCompleted}
+          onRemoveTodo={handleRemoveTodo}
+        />
       </section>
 
       <pre>{JSON.stringify(todos, null, 2)}</pre>
