@@ -1,5 +1,8 @@
 import Avatar from "boring-avatars";
 import { useState, useEffect } from "react";
+import { createStudent, fetchStudents, removeStudent, updateStudent } from "./services/students";
+
+import Swal from 'sweetalert2'
 
 const App = () => {
   // const DEFAULT_STUDENTS = [
@@ -28,60 +31,70 @@ const App = () => {
     city: ''
   })
 
+  // Nos ayuda a controlar el ciclo de vida de un componente
+  // CREACIÓN, ACTUALIZACIÓN Y ELMINACIÓN DEL COMPONENTE
   useEffect(() => {
-    const fetchStudents = async () => {
-      const url = 'https://67074c39a0e04071d229b837.mockapi.io/api/v1/students'
-
-      const response = await fetch(url)
-
-      return await response.json()
-    }
-
-    fetchStudents()
+    console.log('useEffect')
+    
+    fetchStudents() // Promise -> .then
       .then(dataStudents => {
         setStudents(dataStudents)
       })
   }, []) // Se ejecuta el useEffect al cargar el componente la primera vez
-  
 
-  const handleSave = (event) => {
+  const handleSave = async (event) => {
     event.preventDefault();
 
     const isNew = form.id === ''
 
     if (isNew) {
       const newStudent = {
-        id: crypto.randomUUID(),
+        // id: crypto.randomUUID(),
         name: form.name,
         city: form.city
       }
 
-      const updatedStudents = [ ...students, newStudent ]
-      
-      setStudents(updatedStudents)
+      const res = await createStudent(newStudent)
 
-      localStorage.setItem('STUDENTS', JSON.stringify(updatedStudents))
+      console.log(res)
+
+      const dataStudents = await fetchStudents()
+
+      setStudents(dataStudents)
+
+      // const updatedStudents = [ ...students, newStudent ]
+      // setStudents(updatedStudents)
+      // localStorage.setItem('STUDENTS', JSON.stringify(updatedStudents))
     } else {
       // Update student
-      const updatedStudents = students.map(student => {
-        if (student.id === form.id) {
-          return {
-            ...student,
-            name: form.name,
-            city: form.city
-          }
-        }
 
-        return student
-      })
+      const res = await updateStudent(form)
 
-      setStudents(updatedStudents)
+      console.log(res)
 
-      localStorage.setItem('STUDENTS', JSON.stringify(updatedStudents))
+      const dataStudents = await fetchStudents()
+
+      setStudents(dataStudents)
+
+      // const updatedStudents = students.map(student => {
+      //   if (student.id === form.id) {
+      //     return {
+      //       ...student,
+      //       name: form.name,
+      //       city: form.city
+      //     }
+      //   }
+
+      //   return student
+      // })
+
+      // setStudents(updatedStudents)
+
+      // localStorage.setItem('STUDENTS', JSON.stringify(updatedStudents))
     }
 
     setForm({
-      id: null,
+      id: '',
       name: '',
       city: ''
     })
@@ -96,11 +109,35 @@ const App = () => {
   const handleRemove = (id) => {
     console.log('Deleting student...', id)
 
-    const updatedStudents = students.filter(student => student.id !== id)
+    // TODO: enviar una petición para eliinar un estudiante
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+      // Cuando el usuario presiona el botón Yes
+      if (result.isConfirmed) {
+        const res = await removeStudent(id)
 
-    setStudents(updatedStudents)
+        console.log(res)
 
-    localStorage.setItem('STUDENTS', JSON.stringify(updatedStudents))
+        const dataStudents = await fetchStudents()
+
+        setStudents(dataStudents)
+      }
+    });
+
+    
+
+    // const updatedStudents = students.filter(student => student.id !== id)
+
+    // setStudents(updatedStudents)
+
+    // localStorage.setItem('STUDENTS', JSON.stringify(updatedStudents))
   }
 
   const handleUpdate = (id) => {
