@@ -1,3 +1,30 @@
+import { useState, useEffect } from "react";
+import { createStudent, fetchStudents, removeStudent, updateStudent } from "./services/peliculas";
+
+import Swal from 'sweetalert2'
+
+const [students, setStudents] = useState([])
+
+  const [form, setForm] = useState({
+    id: '',
+    nombre: '',
+    imagen: '',
+    estreno: '',
+    generoId: '',
+    resumen: ''
+  })
+
+useEffect(() => {
+  console.log('useEffect')
+  
+  fetchStudents() // Promise -> .then
+    .then(dataStudents => {
+      setStudents(dataStudents)
+    })
+}, [])
+
+
+
 const App = () => {
   return (
     <>
